@@ -4,6 +4,7 @@ import { useState } from "react";
 import { z } from "zod";
 import { toast } from "sonner";
 import { Check, Clock, Video, AlertTriangle, ArrowRight } from "lucide-react";
+import xhsQr from "@/assets/xiaohongshu-qr.jpg";
 
 export const Route = createFileRoute("/book")({ component: BookPage });
 
@@ -172,10 +173,24 @@ function BookPage() {
               <h3 className="font-serif text-xl font-semibold">范围与限制</h3>
               <ul className="mt-4 space-y-3 text-sm text-foreground/85">
                 <li className="flex gap-2"><Video className="mt-0.5 h-4 w-4 shrink-0 text-primary" /> 所有咨询通过 <strong>Zoom</strong> 在线进行</li>
-                <li className="flex gap-2"><Clock className="mt-0.5 h-4 w-4 shrink-0 text-primary" /> 仅接受加拿大移民 / 难民 / 签证相关事务 (联邦及大多数省份)</li>
-                <li className="text-sm text-muted-foreground pl-6">不接受美国事务、Saskatchewan 与 Quebec 事务</li>
-                <li className="text-sm text-muted-foreground pl-6">咨询不包括代填表 / 完整材料审阅</li>
+                <li className="flex gap-2"><Clock className="mt-0.5 h-4 w-4 shrink-0 text-primary" /> 仅接受加拿大移民 / 难民 / 签证相关事务</li>
               </ul>
+            </div>
+
+            <div className="rounded-3xl border border-border/60 bg-card p-7">
+              <h3 className="font-serif text-xl font-semibold">小红书</h3>
+              <p className="mt-2 text-sm text-muted-foreground">扫码关注，预约前可先浏览案例与政策解读。</p>
+              <div className="mt-4 flex items-center gap-5">
+                <img
+                  src={xhsQr}
+                  alt="小红书二维码"
+                  className="h-28 w-28 shrink-0 rounded-lg bg-white object-contain"
+                />
+                <div>
+                  <div className="text-xs uppercase tracking-widest text-muted-foreground">BeckyHuang1234</div>
+                  <div className="mt-1 text-sm font-semibold">Becky 是签证小能手</div>
+                </div>
+              </div>
             </div>
 
             <div className="rounded-3xl border border-primary/30 bg-primary/5 p-7">

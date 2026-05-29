@@ -15,7 +15,7 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
       { code: "CS02", name: "付费咨询 · 紧急", en: "Consultation - Emergency", desc: "持牌移民顾问 24 小时内响应。" },
       { code: "CS03", name: "移民申请检查", en: "Review Immigration Application" },
       { code: "CS04", name: "中小学申请咨询", en: "Primary & Secondary Admission" },
-      { code: "CS04", name: "大学 / 学院申请咨询", en: "College / University Admission" },
+      { code: "CS05", name: "大学 / 学院申请咨询", en: "College / University Admission" },
     ],
   },
   {
@@ -66,19 +66,15 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
 /** Programs we deliberately do NOT take, with reasons. */
 export const AVOIDED_PROGRAMS = [
   {
-    title: "Saskatchewan / Quebec 项目",
-    reason: "省级法规与本顾问执业范围不匹配；不接案以免影响您的时间与成功率。",
+    title: "工作交易 / 买卖就业",
+    reason: "任何形式的购买 LMIA、买工作 offer、虚假雇佣关系，我们一律不碰 —— 既违反 IRCC 规定，也会让申请人面临欺诈调查与永久拒签风险。",
   },
   {
-    title: "美国签证 / 移民",
-    reason: "本顾问仅持有加拿大执照 (RCIC-IRB)，美国事务由美国持牌律师处理更稳妥。",
+    title: "假结婚 / 婚姻造假",
+    reason: "不真实的婚姻关系是 IRPA 第 40 条下的严重虚假陈述。一旦被识别，申请人将被禁入加拿大五年并留下记录，我们绝不参与。",
   },
   {
-    title: "成功率明显偏低的小众项目",
-    reason: "若评估认为风险高于收益，会直接告知并不接案，绝不为收费而递交。",
-  },
-  {
-    title: "代填表 / 仅审材料",
-    reason: "咨询阶段不提供代填表服务；正式委托后通过完整服务流程交付。",
+    title: "评估后风险过高的项目",
+    reason: "若专业评估后认为成功率明显低于风险代价，我们会直接告知并保留 / 拒接，绝不为了收费而递交。",
   },
 ];

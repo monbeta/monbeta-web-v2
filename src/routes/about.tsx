@@ -3,7 +3,6 @@ import { motion } from "motion/react";
 import { Award, Shield, MapPin, GraduationCap, AlertTriangle, ArrowRight, FileBadge } from "lucide-react";
 import { AVOIDED_PROGRAMS } from "@/lib/services-data";
 import rcic from "@/assets/rcic.png";
-import xhs from "@/assets/xiaohongshu.jpg";
 
 export const Route = createFileRoute("/about")({ component: AboutPage });
 
@@ -66,17 +65,6 @@ function AboutPage() {
               <Stat icon={<GraduationCap className="h-5 w-5" />} label="背景" value="留学 + 移民" />
             </div>
 
-            <a
-              href="#"
-              className="flex items-center gap-4 rounded-3xl border border-border/60 bg-card p-4 transition-shadow hover:shadow-md"
-            >
-              <img src={xhs} alt="小红书" className="h-20 w-16 rounded-lg object-cover" />
-              <div>
-                <div className="text-xs uppercase tracking-widest text-muted-foreground">小红书</div>
-                <div className="text-sm font-semibold">BeckyHuang1234</div>
-                <div className="mt-1 text-xs text-muted-foreground">"Becky 是签证小能手"</div>
-              </div>
-            </a>
           </div>
         </div>
 

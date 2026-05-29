@@ -1,10 +1,12 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion } from "motion/react";
-import { ArrowRight, ShieldCheck, AlertTriangle, Award, MapPin, FileBadge, Star, Quote, Calendar } from "lucide-react";
+import { ArrowRight, ShieldCheck, AlertTriangle, Award, MapPin, FileBadge, Calendar } from "lucide-react";
 import { Hero } from "@/components/hero";
 import { Section } from "@/components/section";
+import { ServicesCarousel } from "@/components/services-carousel";
+import { CaseStories } from "@/components/case-stories";
 import { SERVICE_CATEGORIES, AVOIDED_PROGRAMS } from "@/lib/services-data";
-import { TESTIMONIALS, NEWS } from "@/lib/content-data";
+import { NEWS } from "@/lib/content-data";
 import rcic from "@/assets/rcic.png";
 
 export const Route = createFileRoute("/")({
@@ -19,7 +21,13 @@ function Home() {
       {/* About preview */}
       <Section
         eyebrow="About · 关于我们"
-        title={<>不是大机构，是一位 <span className="text-gradient">为你负责到底</span> 的持牌顾问。</>}
+        title={
+          <>
+            不是大机构，
+            <br />
+            是一位<span className="text-gradient">为你负责到底</span>的持牌顾问。
+          </>
+        }
         subtitle="MonBeta 由 Tong Huang (RCIC-IRB) 创办。我们刻意保持小而专 —— 每一个案件都由她本人评估、跟进与递交。"
       >
         <div className="grid items-center gap-10 lg:grid-cols-2">
@@ -54,115 +62,65 @@ function Home() {
             </Link>
           </div>
         </div>
+      </Section>
 
-        {/* Avoided programs */}
-        <div className="mt-20 rounded-3xl border border-border/60 bg-accent/20 p-8 sm:p-12">
+      {/* Services — carousel */}
+      <section className="bg-gradient-soft px-4 py-24 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-7xl">
+          <div className="mx-auto mb-12 max-w-2xl text-center">
+            <div className="text-xs font-medium uppercase tracking-[0.22em] text-primary">Services · 服务项目</div>
+            <h2 className="mt-3 font-serif text-4xl font-semibold leading-snug tracking-tight sm:text-5xl sm:leading-[1.15] text-balance">
+              从一次咨询，到一张<span className="text-gradient">枫叶卡</span>，
+              <br />
+              全程透明。
+            </h2>
+            <p className="mt-4 text-base text-muted-foreground">
+              左右切换服务类别 · 每一项都有清晰的服务编号与交付物。
+            </p>
+          </div>
+          <ServicesCarousel categories={SERVICE_CATEGORIES} />
+        </div>
+      </section>
+
+      {/* Avoided programs */}
+      <section className="px-4 py-20 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-6xl rounded-3xl border border-border/60 bg-accent/20 p-8 sm:p-12">
           <div className="flex items-start gap-3">
             <AlertTriangle className="mt-1 h-5 w-5 text-amber-600" />
             <div>
-              <div className="text-xs font-medium uppercase tracking-[0.2em] text-amber-700">
-                我们刻意不做的事
-              </div>
-              <h3 className="mt-1 font-serif text-2xl font-semibold sm:text-3xl">
-                诚信比成单更重要
-              </h3>
+              <div className="text-xs font-medium uppercase tracking-[0.2em] text-amber-700">我们刻意不做的事</div>
+              <h3 className="mt-1 font-serif text-2xl font-semibold sm:text-3xl">诚信比成单更重要</h3>
               <p className="mt-2 max-w-2xl text-sm text-muted-foreground">
                 以下项目我们不接 —— 不是不愿意，而是不愿意为收费让您冒不必要的风险。
               </p>
             </div>
           </div>
-          <div className="mt-8 grid gap-4 sm:grid-cols-2">
+          <div className="mt-8 grid gap-4 md:grid-cols-3">
             {AVOIDED_PROGRAMS.map((p) => (
               <div key={p.title} className="rounded-2xl border border-border/60 bg-background/80 p-5 backdrop-blur">
                 <div className="text-sm font-semibold">{p.title}</div>
-                <div className="mt-2 text-sm text-muted-foreground">{p.reason}</div>
+                <div className="mt-2 text-sm leading-relaxed text-muted-foreground">{p.reason}</div>
               </div>
             ))}
           </div>
         </div>
-      </Section>
+      </section>
 
-      {/* Services preview */}
-      <Section
-        eyebrow="Services · 服务项目"
-        title={<>从一次咨询，到一张<span className="text-gradient">枫叶卡</span>，全程透明。</>}
-        subtitle="服务覆盖临时居民签证、学签、工签、永居与执法类事务。每一项均有清晰的服务编号、流程与交付物。"
-        className="bg-gradient-soft"
-      >
-        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-          {SERVICE_CATEGORIES.map((cat, i) => (
-            <motion.div
-              key={cat.id}
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.06, duration: 0.5 }}
-              className="group relative overflow-hidden rounded-3xl border border-border/60 bg-background p-7 transition-all hover:-translate-y-1 hover:shadow-xl"
-            >
-              <div className="absolute right-4 top-4 text-[10px] uppercase tracking-widest text-muted-foreground">
-                {cat.subtitle}
-              </div>
-              <div className="text-xl font-serif font-semibold">{cat.title}</div>
-              <ul className="mt-5 space-y-2.5 text-sm">
-                {cat.items.slice(0, 4).map((it, j) => (
-                  <li key={j} className="flex items-start gap-2">
-                    <span className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-primary" />
-                    <span className="text-foreground/80">{it.name}</span>
-                  </li>
-                ))}
-              </ul>
-              <Link
-                to="/services"
-                className="mt-6 inline-flex items-center gap-1.5 text-sm font-medium text-primary opacity-0 transition-opacity group-hover:opacity-100"
-              >
-                查看详情 <ArrowRight className="h-3.5 w-3.5" />
-              </Link>
-            </motion.div>
-          ))}
+      {/* Cases */}
+      <section className="px-4 pb-24 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-7xl">
+          <div className="mx-auto mb-12 max-w-2xl text-center">
+            <div className="text-xs font-medium uppercase tracking-[0.22em] text-primary">Cases · 真实案例反馈</div>
+            <h2 className="mt-4 font-serif text-4xl font-semibold leading-tight sm:text-5xl">
+              三段经历，一份<span className="text-gradient">交代</span>。
+            </h2>
+            <p className="mt-4 text-base text-muted-foreground">
+              均经当事人授权 · 含详细沟通记录与文件证明。点击查看完整故事。
+            </p>
+          </div>
+          <CaseStories />
         </div>
-        <div className="mt-10 text-center">
-          <Link to="/services" className="inline-flex items-center gap-2 rounded-full border border-foreground/20 bg-background px-6 py-3 text-sm font-medium hover:bg-accent/40">
-            浏览所有服务项目 <ArrowRight className="h-4 w-4" />
-          </Link>
-        </div>
-      </Section>
-
-      {/* Testimonials */}
-      <Section
-        eyebrow="Testimonials · 客户评价"
-        title={<>真实的反馈，来自<span className="text-gradient">真实的案件</span>。</>}
-        subtitle="所有评价经客户本人授权后展示。出于隐私保留姓氏与方向，欢迎在咨询时索取案例细节。"
-      >
-        <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-          {TESTIMONIALS.slice(0, 6).map((t, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.05 }}
-              className="relative rounded-3xl border border-border/60 bg-card p-7"
-            >
-              <Quote className="absolute right-5 top-5 h-6 w-6 text-primary/30" />
-              <div className="flex gap-0.5">
-                {Array.from({ length: t.rating }).map((_, j) => (
-                  <Star key={j} className="h-3.5 w-3.5 fill-amber-400 text-amber-400" />
-                ))}
-              </div>
-              <p className="mt-4 text-sm leading-relaxed text-foreground/85">"{t.quote}"</p>
-              <div className="mt-5 border-t border-border/60 pt-4">
-                <div className="text-sm font-semibold">{t.name}</div>
-                <div className="text-xs text-muted-foreground">{t.role}</div>
-              </div>
-            </motion.div>
-          ))}
-        </div>
-        <div className="mt-10 text-center">
-          <Link to="/testimonials" className="inline-flex items-center gap-2 text-sm font-medium hover:text-primary">
-            查看更多客户故事 <ArrowRight className="h-4 w-4" />
-          </Link>
-        </div>
-      </Section>
+      </section>
 
       {/* News */}
       <Section
@@ -183,7 +141,9 @@ function Home() {
             >
               <div className="flex items-center gap-3 text-xs">
                 <span className="rounded-full bg-accent/60 px-2.5 py-1 font-medium text-foreground/80">{n.tag}</span>
-                <span className="flex items-center gap-1 text-muted-foreground"><Calendar className="h-3 w-3" /> {n.date}</span>
+                <span className="flex items-center gap-1 text-muted-foreground">
+                  <Calendar className="h-3 w-3" /> {n.date}
+                </span>
               </div>
               <h3 className="mt-4 font-serif text-xl font-semibold leading-snug">{n.title}</h3>
               <p className="mt-3 flex-1 text-sm text-muted-foreground">{n.excerpt}</p>
@@ -208,10 +168,16 @@ function Home() {
               </p>
             </div>
             <div className="flex flex-wrap justify-end gap-3">
-              <Link to="/book" className="inline-flex items-center gap-2 rounded-full bg-foreground px-7 py-3.5 text-sm font-medium text-background hover:scale-[1.02] transition-transform">
+              <Link
+                to="/book"
+                className="inline-flex items-center gap-2 rounded-full bg-foreground px-7 py-3.5 text-sm font-medium text-background hover:scale-[1.02] transition-transform"
+              >
                 立刻预约 <ArrowRight className="h-4 w-4" />
               </Link>
-              <Link to="/services" className="inline-flex items-center gap-2 rounded-full bg-background/80 px-7 py-3.5 text-sm font-medium backdrop-blur hover:bg-background">
+              <Link
+                to="/services"
+                className="inline-flex items-center gap-2 rounded-full bg-background/80 px-7 py-3.5 text-sm font-medium backdrop-blur hover:bg-background"
+              >
                 先看服务
               </Link>
             </div>
