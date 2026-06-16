@@ -1,19 +1,13 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { motion } from "motion/react";
 import { useState } from "react";
-import { z } from "zod";
 import { toast } from "sonner";
 import { Check, Clock, Video, AlertTriangle, ArrowRight } from "lucide-react";
 import xhsQr from "@/assets/xiaohongshu-qr.jpg";
+import { BOOKING_FEES, bookingSchema } from "@/lib/booking-schema";
+import { submitBooking } from "@/lib/submit-booking";
 
 export const Route = createFileRoute("/book")({ component: BookPage });
-
-const FEES = [
-  { len: 15, price: 99, tag: "快速答疑" },
-  { len: 30, price: 179, tag: "最受欢迎", featured: true },
-  { len: 45, price: 239, tag: "深度梳理" },
-  { len: 60, price: 299, tag: "完整方案" },
-];
 
 const TOPICS = [
   "移民规划 / 永居路径",
@@ -24,19 +18,6 @@ const TOPICS = [
   "身份恢复 / ARC / TRP",
   "其他（请在备注中说明）",
 ];
-
-const schema = z.object({
-  name: z.string().trim().min(1, "请填写姓名").max(80),
-  email: z.string().trim().email("请输入有效邮箱").max(160),
-  phone: z.string().trim().max(40).optional().or(z.literal("")),
-  wechat: z.string().trim().max(80).optional().or(z.literal("")),
-  topic: z.string().min(1, "请选择咨询主题"),
-  length: z.number(),
-  date: z.string().min(1, "请选择日期"),
-  time: z.string().min(1, "请选择时间"),
-  timezone: z.string().min(1),
-  notes: z.string().max(1000).optional().or(z.literal("")),
-});
 
 function BookPage() {
   const [length, setLength] = useState(30);
@@ -57,16 +38,22 @@ function BookPage() {
       timezone: String(fd.get("timezone") ?? "America/Vancouver"),
       notes: String(fd.get("notes") ?? ""),
     };
-    const parsed = schema.safeParse(data);
+    const parsed = bookingSchema.safeParse(data);
     if (!parsed.success) {
       toast.error(parsed.error.issues[0]?.message ?? "请检查填写信息");
       return;
     }
     setSubmitting(true);
-    await new Promise((r) => setTimeout(r, 800));
-    setSubmitting(false);
-    toast.success("预约已提交！我们将在 1 个工作日内通过邮件与您确认时间与支付链接。");
-    (e.target as HTMLFormElement).reset();
+    try {
+      await submitBooking({ data: parsed.data });
+      toast.success("预约已提交！我们将在 1 个工作日内通过邮件与您确认时间与支付链接。");
+      (e.target as HTMLFormElement).reset();
+      setLength(30);
+    } catch {
+      toast.error("提交失败，请稍后重试或直接邮件联系我们。");
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -89,7 +76,7 @@ function BookPage() {
             {/* length picker */}
             <Label>咨询时长 (CAD)</Label>
             <div className="mt-3 grid grid-cols-2 gap-3 sm:grid-cols-4">
-              {FEES.map((f) => (
+              {BOOKING_FEES.map((f) => (
                 <button
                   type="button"
                   key={f.len}
@@ -192,7 +179,7 @@ function BookPage() {
                 </div>
               </div>
             </div>
-
+            {/*}
             <div className="rounded-3xl border border-primary/30 bg-primary/5 p-7">
               <h3 className="font-serif text-lg font-semibold">还没准备好预约？</h3>
               <p className="mt-2 text-sm text-muted-foreground">
@@ -201,7 +188,7 @@ function BookPage() {
               <a href="#" className="mt-4 inline-flex items-center gap-2 text-sm font-medium text-foreground hover:text-primary">
                 免费评估表 <ArrowRight className="h-4 w-4" />
               </a>
-            </div>
+            </div> */}
           </aside>
         </div>
       </div>

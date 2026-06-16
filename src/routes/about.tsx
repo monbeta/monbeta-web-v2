@@ -36,14 +36,20 @@ function AboutPage() {
             </Section>
 
             <Section title="工作方式">
-              <ul className="space-y-3">
+              <ul className="space-y-4">
                 {[
-                  "一对一沟通：评估、撰写、递交全部由顾问本人负责，不外包。",
-                  "结构化咨询：每次会议结束后提供书面方案与下一步清单。",
-                  "明确范围：可做的与不可做的当面说清，不为收费扩大承诺。",
-                  "全程合规：所有沟通与文件留痕，符合 CICC Code of Professional Conduct。",
-                ].map((t) => (
-                  <li key={t} className="flex gap-3"><span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-primary" />{t}</li>
+                  { title: "一对一沟通", desc: "评估、撰写、递交全部由顾问本人负责，不外包。" },
+                  { title: "结构化咨询", desc: "每次会议结束后提供书面方案与下一步清单。" },
+                  { title: "明确范围", desc: "可做的与不可做的当面说清，不为收费扩大承诺。" },
+                  { title: "全程合规", desc: "所有沟通与文件留痕，符合 CICC Code of Professional Conduct。" },
+                ].map(({ title, desc }) => (
+                  <li key={title} className="flex gap-3">
+                    <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-primary" />
+                    <div className="min-w-0">
+                      <div className="font-semibold leading-snug">{title}</div>
+                      <p className="mt-1 text-pretty text-sm leading-relaxed text-foreground/75">{desc}</p>
+                    </div>
+                  </li>
                 ))}
               </ul>
             </Section>

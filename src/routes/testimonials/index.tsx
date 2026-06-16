@@ -1,9 +1,9 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion } from "motion/react";
 import { ArrowRight } from "lucide-react";
-import { CaseStories } from "@/components/case-stories";
+import { TestimonialStories } from "@/components/testimonial-stories";
 
-export const Route = createFileRoute("/testimonials")({ component: TestimonialsPage });
+export const Route = createFileRoute("/testimonials/")({ component: TestimonialsPage });
 
 function TestimonialsPage() {
   return (
@@ -17,19 +17,20 @@ function TestimonialsPage() {
         >
           <div className="text-xs font-medium uppercase tracking-[0.22em] text-primary">Testimonials · 客户评价</div>
           <h1 className="mt-4 font-serif text-4xl font-semibold leading-tight sm:text-5xl text-balance">
-            三段经历，一份<span className="text-gradient">交代</span>。
+            三段经历，一份<span className="text-gradient">信任</span>。
           </h1>
-          <p className="mt-4 text-base text-muted-foreground">
-            均经当事人授权 · 含详细沟通记录与文件证明。点击查看完整故事。
-          </p>
+          <p className="mt-4 text-base text-muted-foreground">均经当事人授权 · 点击查看完整评价与聊天截图。</p>
         </motion.div>
 
         <div className="mt-14">
-          <CaseStories />
+          <TestimonialStories />
         </div>
 
         <div className="mt-14 text-center">
-          <Link to="/book" className="inline-flex items-center gap-2 rounded-full bg-foreground px-7 py-3.5 text-sm font-medium text-background">
+          <Link
+            to="/book"
+            className="inline-flex items-center gap-2 rounded-full bg-foreground px-7 py-3.5 text-sm font-medium text-background"
+          >
             开始您自己的故事 <ArrowRight className="h-4 w-4" />
           </Link>
         </div>

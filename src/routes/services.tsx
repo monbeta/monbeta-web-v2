@@ -15,7 +15,9 @@ function ServicesPage() {
             一份清晰的<span className="text-gradient">服务清单</span>。
           </h1>
           <p className="mt-5 max-w-2xl text-lg text-muted-foreground">
-            每一项服务均有内部编号、范围说明与交付物。咨询时我们会根据您的情况组合方案。
+            每项服务均明确列明服务范围、申请类别及交付内容。
+            <br />
+            咨询时，我们会根据您的背景和需求，协助组合最适合的申请方案。
           </p>
         </motion.div>
 

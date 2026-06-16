@@ -1,4 +1,15 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute, redirect } from "@tanstack/react-router";
+
+// Temporarily disabled — redirect to home until news section is re-enabled.
+export const Route = createFileRoute("/news")({
+  beforeLoad: () => {
+    throw redirect({ to: "/" });
+  },
+});
+
+/* TEMPORARILY DISABLED — restore when news section goes live
+
+import { Link } from "@tanstack/react-router";
 import { motion } from "motion/react";
 import { Calendar, ArrowRight } from "lucide-react";
 import { NEWS } from "@/lib/content-data";
@@ -15,11 +26,10 @@ function NewsPage() {
             政策的<span className="text-gradient">每一处微调</span>，我们替您盯紧。
           </h1>
           <p className="mt-5 max-w-2xl text-lg text-muted-foreground">
-            每周更新 IRCC、CICC 与各省提名项目的关键变化。简明、实操、不堆术语。
+            持续更新 IRCC 及各省提名项目的重要变化。简明、实用、不堆术语，让您快速掌握与自身申请相关的关键信息。
           </p>
         </motion.div>
 
-        {/* Featured */}
         <div className="mt-14 grid gap-6 lg:grid-cols-[1.4fr_1fr]">
           <Featured n={NEWS[0]} />
           <div className="space-y-6">
@@ -80,3 +90,5 @@ function Card({ n, small }: { n: N; small?: boolean }) {
     </article>
   );
 }
+
+*/

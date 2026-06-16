@@ -1,12 +1,12 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion } from "motion/react";
-import { ArrowRight, ShieldCheck, AlertTriangle, Award, MapPin, FileBadge, Calendar } from "lucide-react";
+import { ArrowRight, ShieldCheck, AlertTriangle, Award, MapPin, FileBadge } from "lucide-react";
 import { Hero } from "@/components/hero";
 import { Section } from "@/components/section";
 import { ServicesCarousel } from "@/components/services-carousel";
-import { CaseStories } from "@/components/case-stories";
+import { TestimonialStories } from "@/components/testimonial-stories";
 import { SERVICE_CATEGORIES, AVOIDED_PROGRAMS } from "@/lib/services-data";
-import { NEWS } from "@/lib/content-data";
+// import { NEWS } from "@/lib/content-data"; // temporarily hidden with news section
 import rcic from "@/assets/rcic.png";
 
 export const Route = createFileRoute("/")({
@@ -75,7 +75,7 @@ function Home() {
               全程透明。
             </h2>
             <p className="mt-4 text-base text-muted-foreground">
-              左右切换服务类别 · 每一项都有清晰的服务编号与交付物。
+              6大服务类别，40余项服务 · 每一项都有清晰的服务编号与交付物。
             </p>
           </div>
           <ServicesCarousel categories={SERVICE_CATEGORIES} />
@@ -110,24 +110,24 @@ function Home() {
       <section className="px-4 pb-24 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-7xl">
           <div className="mx-auto mb-12 max-w-2xl text-center">
-            <div className="text-xs font-medium uppercase tracking-[0.22em] text-primary">Cases · 真实案例反馈</div>
+            <div className="text-xs font-medium uppercase tracking-[0.22em] text-primary">Testimonials · 客户评价</div>
             <h2 className="mt-4 font-serif text-4xl font-semibold leading-tight sm:text-5xl">
-              三段经历，一份<span className="text-gradient">交代</span>。
+              三段经历，一份<span className="text-gradient">信任</span>。
             </h2>
             <p className="mt-4 text-base text-muted-foreground">
-              均经当事人授权 · 含详细沟通记录与文件证明。点击查看完整故事。
+              均经当事人授权 · 点击查看完整评价与聊天截图。
             </p>
           </div>
-          <CaseStories />
+          <TestimonialStories />
         </div>
       </section>
 
-      {/* News */}
+      {/* News — temporarily hidden
       <Section
         eyebrow="News · 资讯动态"
-        title={<>跟紧 <span className="text-gradient">政策的每一次微调</span>。</>}
-        subtitle="我们每周梳理 IRCC、CICC 与省提名项目的关键更新。"
-        className="bg-gradient-soft"
+        title={<>政策的<span className="text-gradient">每一处微调</span>，我们替您盯紧。</>}
+        subtitle="持续更新 IRCC 及各省提名项目的重要变化。简明、实用、不堆术语，让您快速掌握与自身申请相关的关键信息。"
+        className="bg-gradient-soft !pb-28 after:pointer-events-none after:absolute after:inset-x-0 after:bottom-0 after:h-24 after:bg-gradient-to-b after:from-transparent after:to-background sm:!pb-36 sm:after:h-32"
       >
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {NEWS.slice(0, 3).map((n, i) => (
@@ -154,32 +154,35 @@ function Home() {
           ))}
         </div>
       </Section>
+      */}
 
       {/* CTA */}
-      <section className="px-4 pb-24 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-6xl overflow-hidden rounded-[2.5rem] bg-gradient-brand p-10 sm:p-16">
-          <div className="grid items-center gap-8 lg:grid-cols-[1.4fr_1fr]">
-            <div>
-              <h3 className="font-serif text-4xl font-semibold leading-tight sm:text-5xl text-balance">
-                把您的案子，交给会说"不"的顾问。
-              </h3>
-              <p className="mt-4 max-w-xl text-base leading-relaxed text-foreground/80">
-                15 / 30 / 45 / 60 分钟，Zoom 一对一。带走结构化方案与下一步清单。咨询费可在签署正式服务协议时抵扣。
-              </p>
-            </div>
-            <div className="flex flex-wrap justify-end gap-3">
-              <Link
-                to="/book"
-                className="inline-flex items-center gap-2 rounded-full bg-foreground px-7 py-3.5 text-sm font-medium text-background hover:scale-[1.02] transition-transform"
-              >
-                立刻预约 <ArrowRight className="h-4 w-4" />
-              </Link>
-              <Link
-                to="/services"
-                className="inline-flex items-center gap-2 rounded-full bg-background/80 px-7 py-3.5 text-sm font-medium backdrop-blur hover:bg-background"
-              >
-                先看服务
-              </Link>
+      <section className="bg-gradient-soft px-4 pb-28 after:pointer-events-none after:relative after:block after:h-24 after:bg-gradient-to-b after:from-transparent after:to-background sm:px-6 sm:pb-36 sm:after:h-32 lg:px-8">
+        <div className="relative mx-auto max-w-7xl pt-16 sm:pt-20">
+          <div className="overflow-hidden rounded-3xl bg-gradient-brand p-8 shadow-xl ring-1 ring-black/5 sm:rounded-[2rem] sm:p-12 lg:p-14">
+            <div className="grid items-center gap-8 lg:grid-cols-[1.4fr_auto] lg:gap-12">
+              <div>
+                <h3 className="font-serif text-3xl font-semibold leading-tight sm:text-4xl lg:text-[2.75rem] text-balance">
+                  把您的案子，交给会说"不"的顾问。
+                </h3>
+                <p className="mt-4 max-w-xl text-sm leading-relaxed text-foreground/80 sm:text-base">
+                  15 / 30 / 45 / 60 分钟，Zoom 一对一。带走结构化方案与下一步清单。咨询费可在签署正式服务协议时抵扣。
+                </p>
+              </div>
+              <div className="flex flex-wrap gap-3 lg:justify-end">
+                <Link
+                  to="/book"
+                  className="inline-flex items-center gap-2 rounded-full bg-foreground px-7 py-3.5 text-sm font-medium text-background transition-transform hover:scale-[1.02]"
+                >
+                  立刻预约 <ArrowRight className="h-4 w-4" />
+                </Link>
+                <Link
+                  to="/services"
+                  className="inline-flex items-center gap-2 rounded-full bg-background/80 px-7 py-3.5 text-sm font-medium backdrop-blur hover:bg-background"
+                >
+                  先看服务
+                </Link>
+              </div>
             </div>
           </div>
         </div>

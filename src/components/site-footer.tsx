@@ -4,8 +4,8 @@ import logo from "@/assets/logo.svg";
 
 export function SiteFooter() {
   return (
-    <footer className="mt-24 border-t border-border/60 bg-gradient-to-b from-background to-accent/20">
-      <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+    <footer className="bg-gradient-to-b from-background to-accent/15 pt-16 sm:pt-20">
+      <div className="mx-auto max-w-7xl px-4 pb-16 sm:px-6 lg:px-8">
         <div className="grid gap-12 md:grid-cols-4">
           <div className="md:col-span-2">
             <div className="flex items-center gap-3">
@@ -30,7 +30,7 @@ export function SiteFooter() {
               <li><Link to="/about" className="hover:text-foreground">关于我们</Link></li>
               <li><Link to="/services" className="hover:text-foreground">服务项目</Link></li>
               <li><Link to="/testimonials" className="hover:text-foreground">客户评价</Link></li>
-              <li><Link to="/news" className="hover:text-foreground">资讯动态</Link></li>
+              {/* <li><Link to="/news" className="hover:text-foreground">资讯动态</Link></li> */}
               <li><Link to="/book" className="hover:text-foreground">预约咨询</Link></li>
             </ul>
           </div>
@@ -39,7 +39,7 @@ export function SiteFooter() {
             <div className="text-sm font-semibold">联系</div>
             <ul className="mt-4 space-y-3 text-sm text-muted-foreground">
               <li className="flex items-start gap-2"><MapPin className="mt-0.5 h-4 w-4 shrink-0" /> 加拿大 BC 省 温哥华</li>
-              <li className="flex items-start gap-2"><Mail className="mt-0.5 h-4 w-4 shrink-0" /> hello@monbeta.ca</li>
+              <li className="flex items-start gap-2"><Mail className="mt-0.5 h-4 w-4 shrink-0" /> love2come2canada@gmail.com</li>
               <li className="text-xs">小红书：BeckyHuang1234</li>
             </ul>
           </div>

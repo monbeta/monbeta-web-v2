@@ -8,7 +8,7 @@ const links = [
   { to: "/about", label: "关于我们" },
   { to: "/services", label: "服务项目" },
   { to: "/testimonials", label: "客户评价" },
-  { to: "/news", label: "资讯动态" },
+  // { to: "/news", label: "资讯动态" }, // temporarily hidden
 ];
 
 export function SiteNav() {

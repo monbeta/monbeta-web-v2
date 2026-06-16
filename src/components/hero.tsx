@@ -58,7 +58,7 @@ const MAP_VIEWBOX = buildMapViewBox();
 
 export function Hero() {
   return (
-    <section className="relative isolate overflow-x-hidden pt-28 pb-20 sm:pt-36">
+    <section className="relative isolate overflow-x-clip pt-28 pb-20 sm:pt-36">
       <div className="absolute inset-0 -z-10 bg-gradient-hero" />
       <div className="absolute -top-32 -right-32 -z-10 h-[28rem] w-[28rem] rounded-full bg-secondary/40 blur-3xl" />
       <div className="absolute -bottom-20 -left-32 -z-10 h-[24rem] w-[24rem] rounded-full bg-primary/20 blur-3xl" />

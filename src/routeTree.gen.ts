@@ -9,19 +9,15 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as TestimonialsRouteImport } from './routes/testimonials'
 import { Route as ServicesRouteImport } from './routes/services'
 import { Route as NewsRouteImport } from './routes/news'
 import { Route as BookRouteImport } from './routes/book'
 import { Route as AboutRouteImport } from './routes/about'
+import { Route as TestimonialsRouteRouteImport } from './routes/testimonials/route'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as CasesSlugRouteImport } from './routes/cases.$slug'
+import { Route as TestimonialsIndexRouteImport } from './routes/testimonials/index'
+import { Route as TestimonialsSlugRouteImport } from './routes/testimonials/$slug'
 
-const TestimonialsRoute = TestimonialsRouteImport.update({
-  id: '/testimonials',
-  path: '/testimonials',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const ServicesRoute = ServicesRouteImport.update({
   id: '/services',
   path: '/services',
@@ -42,25 +38,36 @@ const AboutRoute = AboutRouteImport.update({
   path: '/about',
   getParentRoute: () => rootRouteImport,
 } as any)
+const TestimonialsRouteRoute = TestimonialsRouteRouteImport.update({
+  id: '/testimonials',
+  path: '/testimonials',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const CasesSlugRoute = CasesSlugRouteImport.update({
-  id: '/cases/$slug',
-  path: '/cases/$slug',
-  getParentRoute: () => rootRouteImport,
+const TestimonialsIndexRoute = TestimonialsIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => TestimonialsRouteRoute,
+} as any)
+const TestimonialsSlugRoute = TestimonialsSlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => TestimonialsRouteRoute,
 } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/testimonials': typeof TestimonialsRouteRouteWithChildren
   '/about': typeof AboutRoute
   '/book': typeof BookRoute
   '/news': typeof NewsRoute
   '/services': typeof ServicesRoute
-  '/testimonials': typeof TestimonialsRoute
-  '/cases/$slug': typeof CasesSlugRoute
+  '/testimonials/$slug': typeof TestimonialsSlugRoute
+  '/testimonials/': typeof TestimonialsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -68,29 +75,31 @@ export interface FileRoutesByTo {
   '/book': typeof BookRoute
   '/news': typeof NewsRoute
   '/services': typeof ServicesRoute
-  '/testimonials': typeof TestimonialsRoute
-  '/cases/$slug': typeof CasesSlugRoute
+  '/testimonials/$slug': typeof TestimonialsSlugRoute
+  '/testimonials': typeof TestimonialsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/testimonials': typeof TestimonialsRouteRouteWithChildren
   '/about': typeof AboutRoute
   '/book': typeof BookRoute
   '/news': typeof NewsRoute
   '/services': typeof ServicesRoute
-  '/testimonials': typeof TestimonialsRoute
-  '/cases/$slug': typeof CasesSlugRoute
+  '/testimonials/$slug': typeof TestimonialsSlugRoute
+  '/testimonials/': typeof TestimonialsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/testimonials'
     | '/about'
     | '/book'
     | '/news'
     | '/services'
-    | '/testimonials'
-    | '/cases/$slug'
+    | '/testimonials/$slug'
+    | '/testimonials/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -98,38 +107,31 @@ export interface FileRouteTypes {
     | '/book'
     | '/news'
     | '/services'
+    | '/testimonials/$slug'
     | '/testimonials'
-    | '/cases/$slug'
   id:
     | '__root__'
     | '/'
+    | '/testimonials'
     | '/about'
     | '/book'
     | '/news'
     | '/services'
-    | '/testimonials'
-    | '/cases/$slug'
+    | '/testimonials/$slug'
+    | '/testimonials/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  TestimonialsRouteRoute: typeof TestimonialsRouteRouteWithChildren
   AboutRoute: typeof AboutRoute
   BookRoute: typeof BookRoute
   NewsRoute: typeof NewsRoute
   ServicesRoute: typeof ServicesRoute
-  TestimonialsRoute: typeof TestimonialsRoute
-  CasesSlugRoute: typeof CasesSlugRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/testimonials': {
-      id: '/testimonials'
-      path: '/testimonials'
-      fullPath: '/testimonials'
-      preLoaderRoute: typeof TestimonialsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/services': {
       id: '/services'
       path: '/services'
@@ -158,6 +160,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AboutRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/testimonials': {
+      id: '/testimonials'
+      path: '/testimonials'
+      fullPath: '/testimonials'
+      preLoaderRoute: typeof TestimonialsRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -165,24 +174,43 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/cases/$slug': {
-      id: '/cases/$slug'
-      path: '/cases/$slug'
-      fullPath: '/cases/$slug'
-      preLoaderRoute: typeof CasesSlugRouteImport
-      parentRoute: typeof rootRouteImport
+    '/testimonials/': {
+      id: '/testimonials/'
+      path: '/'
+      fullPath: '/testimonials/'
+      preLoaderRoute: typeof TestimonialsIndexRouteImport
+      parentRoute: typeof TestimonialsRouteRoute
+    }
+    '/testimonials/$slug': {
+      id: '/testimonials/$slug'
+      path: '/$slug'
+      fullPath: '/testimonials/$slug'
+      preLoaderRoute: typeof TestimonialsSlugRouteImport
+      parentRoute: typeof TestimonialsRouteRoute
     }
   }
 }
 
+interface TestimonialsRouteRouteChildren {
+  TestimonialsSlugRoute: typeof TestimonialsSlugRoute
+  TestimonialsIndexRoute: typeof TestimonialsIndexRoute
+}
+
+const TestimonialsRouteRouteChildren: TestimonialsRouteRouteChildren = {
+  TestimonialsSlugRoute: TestimonialsSlugRoute,
+  TestimonialsIndexRoute: TestimonialsIndexRoute,
+}
+
+const TestimonialsRouteRouteWithChildren =
+  TestimonialsRouteRoute._addFileChildren(TestimonialsRouteRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  TestimonialsRouteRoute: TestimonialsRouteRouteWithChildren,
   AboutRoute: AboutRoute,
   BookRoute: BookRoute,
   NewsRoute: NewsRoute,
   ServicesRoute: ServicesRoute,
-  TestimonialsRoute: TestimonialsRoute,
-  CasesSlugRoute: CasesSlugRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

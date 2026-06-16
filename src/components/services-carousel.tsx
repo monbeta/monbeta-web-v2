@@ -75,7 +75,7 @@ export function ServicesCarousel({ categories }: { categories: ServiceCategory[]
                     <span className="font-mono">{String(n).padStart(2, "0")}</span>
                   </div>
                   <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
-                    共 {cat.items.length} 项服务，每项均标注编号与交付范围。
+                    共 {cat.items.length} 项服务。
                   </p>
                 </div>
 
