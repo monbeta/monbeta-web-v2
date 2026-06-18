@@ -1,6 +1,5 @@
 import jiaqi1 from "@/assets/testimonials/jiaqi-1.png";
 import jiaqi2 from "@/assets/testimonials/jiaqi-2.png";
-import jiaqi3 from "@/assets/testimonials/jiaqi-3.png";
 import sherry1 from "@/assets/testimonials/sherry-1.png";
 import sherry2 from "@/assets/testimonials/sherry-2.png";
 import edward1 from "@/assets/testimonials/edward-1.png";
@@ -21,12 +20,12 @@ export const TESTIMONIALS: Testimonial[] = [
   {
     slug: "jiaqi",
     author: "Jiaqi",
-    headline: "三年三次合作，每一次都让我很放心",
+    headline: "两年三次合作，每一次都让我很放心",
     excerpt:
       "这两年里，我一共委托 Becky 办理了三次移民/签证相关事务，每一次体验都非常愉快，也让我越来越放心把重要的事情交给她。",
-    services: ["付费咨询", "签证", "移民"],
+    services: ["付费咨询", "临时居民签证 (TR)", "永久居民 (PR)"],
     timeline: "2024-2026",
-    screenshots: [jiaqi1, jiaqi2, jiaqi3],
+    screenshots: [jiaqi1, jiaqi2],
     body: [
       "这两年里，我一共委托 Becky 办理了三次移民/签证相关事务，每一次体验都非常愉快，也让我越来越放心把重要的事情交给她。",
       "我个人觉得，移民和签证这类事情真的非常复杂。很多时候不是网上搜一搜、看看攻略就能解决的，还是得找真正懂规则、懂细节、懂风险的人。不然一步走错，后面可能就是几年时间甚至身份上的损失。",
@@ -52,7 +51,7 @@ export const TESTIMONIALS: Testimonial[] = [
     headline: "从学签到 PR，四年一路陪伴",
     excerpt:
       "我和Becky相识于2022年，那时候我刚刚拿到加拿大的学校offer，需要申请学签，但那时候的我对加拿大的签证几乎一无所知。",
-    services: ["学签", "PGWP", "PR"],
+    services: ["学习许可 (SP)", "毕业工签 (PGWP)", "永久居民 (PR)"],
     timeline: "2022 – 2026",
     screenshots: [sherry1, sherry2],
     body: [
@@ -67,10 +66,10 @@ export const TESTIMONIALS: Testimonial[] = [
   {
     slug: "edward",
     author: "Edward L.",
-    headline: "从 PNP 到父母签证，近三年的踏实陪伴",
+    headline: "从 PNP 到父母签证，安心保障每一步",
     excerpt:
       "第一次和Becky联系咨询是将近3年前了，那时候刚拿到Offer，学签和配偶工签都审好了，但是PR等等后续的规划还有各种各样的疑惑。",
-    services: ["PNP", "联邦 PR", "父母旅游签证"],
+    services: ["省提名 (PNP)", "永久居民 (PR)", "临时居民签证 (TR)"],
     timeline: "2023-2026",
     screenshots: [edward1, edward2],
     body: [

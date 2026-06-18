@@ -15,7 +15,7 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
       { code: "CS02", name: "付费咨询 · 紧急", en: "Consultation - Emergency", desc: "持牌移民顾问 24 小时内响应。" },
       { code: "CS03", name: "移民申请检查", en: "Review Immigration Application" },
       { code: "CS04", name: "中小学申请咨询", en: "Primary & Secondary Admission" },
-      { code: "CS05", name: "大学 / 学院申请咨询", en: "College / University Admission" },
+      { code: "CS05", name: "大学 / 学院申请咨询", en: "University / College Admission" },
     ],
   },
   {
@@ -47,13 +47,16 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
     items: [
       { code: "WP01", name: "毕业工签 / 续签", en: "PGWP / Renewal" },
       { code: "WP02", name: "配偶开放工签", en: "Spouse Open Work Permit" },
-      { code: "WP03", name: "打工度假工签", en: "Working Holiday Work Permit" },
-      { code: "WP04", name: "青年专业人士工签", en: "Young Professional Work Permit" },
-      { code: "WP05", name: "桥梁开放式工签", en: "Bridging Open Work Permit" },
-      { code: "WP06", name: "恢复工人身份", en: "Restore your status as a Worker" },
-      { code: "WP07", name: "封闭式工签", en: "Closed Work Permit" },
-      { code: "WP08", name: "跨国企业内调工签", en: "ICT Intra-Company Transfer Work Permit" },
-      { code: "WP09", name: "国际自由贸易协定工签", en: "Work Permit based on International Free Trade Agreements" },
+      { code: "WP03", name: "桥梁开放式工签", en: "Bridging Open Work Permit" },
+      { code: "WP04", name: "恢复工人身份", en: "Restore your status as a Worker" },
+      {
+        code: "WP05",
+        name: "青年交流项目/打工度假/青年专业人士等",
+        en: "International Experience Canada (IEC)/Working Holiday/Young Professionals...",
+      },
+      { code: "WP06", name: "封闭式工签", en: "Closed Work Permit" },
+      { code: "WP07", name: "跨国企业内调工签", en: "ICT Intra-Company Transfer Work Permit" },
+      { code: "WP08", name: "国际自由贸易协定工签", en: "Work Permit based on International Free Trade Agreements" },
     ],
   },
   {
@@ -62,11 +65,10 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
     subtitle: "Permanent Residency",
     items: [
       { code: "PR01", name: "联邦快速通道", en: "Express Entry", desc: "加拿大经验类 (CEC) / 联邦技术移民 (FSW) / 省提名衔接联邦 PR。" },
-      { code: "PR02", name: "省提名（魁北克省除外）", en: "Provincial Nominee Program (except Quebec)", desc: "含 EE 衔接省提名与纸质省提名 (base / non-EE)。" },
+      { code: "PR02", name: "省提名（魁北克省除外）", en: "Provincial Nominee Program (except Quebec)", desc: "含省提名与non-EE联邦申请。" },
       { code: "PR03", name: "家庭团聚类申请", en: "Family Sponsorship", desc: "夫妻、伴侣、子女、父母、祖父母团聚；含孤独加拿大人计划担保亲属。" },
       { code: "PR04", name: "其他联邦移民项目", en: "Other Federal Immigration Programs", desc: "联邦自雇、投资移民、护理类移民等。" },
-      { code: "PR05", name: "人道主义与同情类", en: "Humanitarian and Compassionate", desc: "含香港居民永居途径 (HK Pathway Stream A & B)、孤独父母祖父母等。" },
-      { code: "PR06", name: "难民", en: "Refugee" },
+      { code: "PR05", name: "难民", en: "Refugee" },
     ],
   },
   {
