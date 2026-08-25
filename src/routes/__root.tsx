@@ -4,12 +4,14 @@ import {
   Link,
   createRootRouteWithContext,
   useRouter,
+  useRouterState,
   HeadContent,
   Scripts,
 } from "@tanstack/react-router";
 import { Toaster } from "@/components/ui/sonner";
 import { SiteNav } from "@/components/site-nav";
 import { SiteFooter } from "@/components/site-footer";
+import { showPublicChrome } from "@/lib/admin-paths";
 
 import appCss from "../styles.css?url";
 
@@ -79,7 +81,7 @@ function RootShell({ children }: { children: React.ReactNode }) {
   return (
     <html lang="zh-CN">
       <head><HeadContent /></head>
-      <body>
+      <body suppressHydrationWarning>
         {children}
         <Scripts />
       </body>
@@ -89,14 +91,17 @@ function RootShell({ children }: { children: React.ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+  const pathname = useRouterState({ select: (state) => state.location.pathname });
+  const publicChrome = showPublicChrome(pathname);
+
   return (
     <QueryClientProvider client={queryClient}>
       <div className="flex min-h-screen flex-col">
-        <SiteNav />
+        {publicChrome && <SiteNav />}
         <main className="flex-1">
           <Outlet />
         </main>
-        <SiteFooter />
+        {publicChrome && <SiteFooter />}
       </div>
       <Toaster richColors position="top-center" />
     </QueryClientProvider>

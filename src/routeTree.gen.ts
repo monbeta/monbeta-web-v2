@@ -10,22 +10,30 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as ServicesRouteImport } from './routes/services'
-import { Route as NewsRouteImport } from './routes/news'
 import { Route as BookRouteImport } from './routes/book'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as TestimonialsRouteRouteImport } from './routes/testimonials/route'
+import { Route as NewsRouteRouteImport } from './routes/news/route'
+import { Route as AdminRouteRouteImport } from './routes/admin/route'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as TestimonialsIndexRouteImport } from './routes/testimonials/index'
+import { Route as NewsIndexRouteImport } from './routes/news/index'
+import { Route as AdminIndexRouteImport } from './routes/admin/index'
 import { Route as TestimonialsSlugRouteImport } from './routes/testimonials/$slug'
+import { Route as NewsSlugRouteImport } from './routes/news/$slug'
+import { Route as AdminTagsRouteImport } from './routes/admin/tags'
+import { Route as AdminLoginRouteImport } from './routes/admin/login'
+import { Route as AdminNewsRouteRouteImport } from './routes/admin/news/route'
+import { Route as AdminNewsIndexRouteImport } from './routes/admin/news/index'
+import { Route as ApiAuthSplatRouteImport } from './routes/api/auth/$'
+import { Route as AdminNewsNewRouteImport } from './routes/admin/news/new'
+import { Route as AdminNewsIdRouteImport } from './routes/admin/news/$id'
+import { Route as AdminNewsIdIndexRouteImport } from './routes/admin/news/$id.index'
+import { Route as AdminNewsIdPreviewRouteImport } from './routes/admin/news/$id.preview'
 
 const ServicesRoute = ServicesRouteImport.update({
   id: '/services',
   path: '/services',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const NewsRoute = NewsRouteImport.update({
-  id: '/news',
-  path: '/news',
   getParentRoute: () => rootRouteImport,
 } as any)
 const BookRoute = BookRouteImport.update({
@@ -43,6 +51,16 @@ const TestimonialsRouteRoute = TestimonialsRouteRouteImport.update({
   path: '/testimonials',
   getParentRoute: () => rootRouteImport,
 } as any)
+const NewsRouteRoute = NewsRouteRouteImport.update({
+  id: '/news',
+  path: '/news',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminRouteRoute = AdminRouteRouteImport.update({
+  id: '/admin',
+  path: '/admin',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -53,81 +71,213 @@ const TestimonialsIndexRoute = TestimonialsIndexRouteImport.update({
   path: '/',
   getParentRoute: () => TestimonialsRouteRoute,
 } as any)
+const NewsIndexRoute = NewsIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => NewsRouteRoute,
+} as any)
+const AdminIndexRoute = AdminIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AdminRouteRoute,
+} as any)
 const TestimonialsSlugRoute = TestimonialsSlugRouteImport.update({
   id: '/$slug',
   path: '/$slug',
   getParentRoute: () => TestimonialsRouteRoute,
 } as any)
+const NewsSlugRoute = NewsSlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => NewsRouteRoute,
+} as any)
+const AdminTagsRoute = AdminTagsRouteImport.update({
+  id: '/tags',
+  path: '/tags',
+  getParentRoute: () => AdminRouteRoute,
+} as any)
+const AdminLoginRoute = AdminLoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => AdminRouteRoute,
+} as any)
+const AdminNewsRouteRoute = AdminNewsRouteRouteImport.update({
+  id: '/news',
+  path: '/news',
+  getParentRoute: () => AdminRouteRoute,
+} as any)
+const AdminNewsIndexRoute = AdminNewsIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AdminNewsRouteRoute,
+} as any)
+const ApiAuthSplatRoute = ApiAuthSplatRouteImport.update({
+  id: '/api/auth/$',
+  path: '/api/auth/$',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminNewsNewRoute = AdminNewsNewRouteImport.update({
+  id: '/new',
+  path: '/new',
+  getParentRoute: () => AdminNewsRouteRoute,
+} as any)
+const AdminNewsIdRoute = AdminNewsIdRouteImport.update({
+  id: '/$id',
+  path: '/$id',
+  getParentRoute: () => AdminNewsRouteRoute,
+} as any)
+const AdminNewsIdIndexRoute = AdminNewsIdIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AdminNewsIdRoute,
+} as any)
+const AdminNewsIdPreviewRoute = AdminNewsIdPreviewRouteImport.update({
+  id: '/preview',
+  path: '/preview',
+  getParentRoute: () => AdminNewsIdRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/admin': typeof AdminRouteRouteWithChildren
+  '/news': typeof NewsRouteRouteWithChildren
   '/testimonials': typeof TestimonialsRouteRouteWithChildren
   '/about': typeof AboutRoute
   '/book': typeof BookRoute
-  '/news': typeof NewsRoute
   '/services': typeof ServicesRoute
+  '/admin/news': typeof AdminNewsRouteRouteWithChildren
+  '/admin/login': typeof AdminLoginRoute
+  '/admin/tags': typeof AdminTagsRoute
+  '/news/$slug': typeof NewsSlugRoute
   '/testimonials/$slug': typeof TestimonialsSlugRoute
+  '/admin/': typeof AdminIndexRoute
+  '/news/': typeof NewsIndexRoute
   '/testimonials/': typeof TestimonialsIndexRoute
+  '/admin/news/$id': typeof AdminNewsIdRouteWithChildren
+  '/admin/news/new': typeof AdminNewsNewRoute
+  '/api/auth/$': typeof ApiAuthSplatRoute
+  '/admin/news/': typeof AdminNewsIndexRoute
+  '/admin/news/$id/preview': typeof AdminNewsIdPreviewRoute
+  '/admin/news/$id/': typeof AdminNewsIdIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/book': typeof BookRoute
-  '/news': typeof NewsRoute
   '/services': typeof ServicesRoute
+  '/admin/login': typeof AdminLoginRoute
+  '/admin/tags': typeof AdminTagsRoute
+  '/news/$slug': typeof NewsSlugRoute
   '/testimonials/$slug': typeof TestimonialsSlugRoute
+  '/admin': typeof AdminIndexRoute
+  '/news': typeof NewsIndexRoute
   '/testimonials': typeof TestimonialsIndexRoute
+  '/admin/news/new': typeof AdminNewsNewRoute
+  '/api/auth/$': typeof ApiAuthSplatRoute
+  '/admin/news': typeof AdminNewsIndexRoute
+  '/admin/news/$id/preview': typeof AdminNewsIdPreviewRoute
+  '/admin/news/$id': typeof AdminNewsIdIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/admin': typeof AdminRouteRouteWithChildren
+  '/news': typeof NewsRouteRouteWithChildren
   '/testimonials': typeof TestimonialsRouteRouteWithChildren
   '/about': typeof AboutRoute
   '/book': typeof BookRoute
-  '/news': typeof NewsRoute
   '/services': typeof ServicesRoute
+  '/admin/news': typeof AdminNewsRouteRouteWithChildren
+  '/admin/login': typeof AdminLoginRoute
+  '/admin/tags': typeof AdminTagsRoute
+  '/news/$slug': typeof NewsSlugRoute
   '/testimonials/$slug': typeof TestimonialsSlugRoute
+  '/admin/': typeof AdminIndexRoute
+  '/news/': typeof NewsIndexRoute
   '/testimonials/': typeof TestimonialsIndexRoute
+  '/admin/news/$id': typeof AdminNewsIdRouteWithChildren
+  '/admin/news/new': typeof AdminNewsNewRoute
+  '/api/auth/$': typeof ApiAuthSplatRoute
+  '/admin/news/': typeof AdminNewsIndexRoute
+  '/admin/news/$id/preview': typeof AdminNewsIdPreviewRoute
+  '/admin/news/$id/': typeof AdminNewsIdIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/admin'
+    | '/news'
     | '/testimonials'
     | '/about'
     | '/book'
-    | '/news'
     | '/services'
+    | '/admin/news'
+    | '/admin/login'
+    | '/admin/tags'
+    | '/news/$slug'
     | '/testimonials/$slug'
+    | '/admin/'
+    | '/news/'
     | '/testimonials/'
+    | '/admin/news/$id'
+    | '/admin/news/new'
+    | '/api/auth/$'
+    | '/admin/news/'
+    | '/admin/news/$id/preview'
+    | '/admin/news/$id/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/about'
     | '/book'
-    | '/news'
     | '/services'
+    | '/admin/login'
+    | '/admin/tags'
+    | '/news/$slug'
     | '/testimonials/$slug'
+    | '/admin'
+    | '/news'
     | '/testimonials'
+    | '/admin/news/new'
+    | '/api/auth/$'
+    | '/admin/news'
+    | '/admin/news/$id/preview'
+    | '/admin/news/$id'
   id:
     | '__root__'
     | '/'
+    | '/admin'
+    | '/news'
     | '/testimonials'
     | '/about'
     | '/book'
-    | '/news'
     | '/services'
+    | '/admin/news'
+    | '/admin/login'
+    | '/admin/tags'
+    | '/news/$slug'
     | '/testimonials/$slug'
+    | '/admin/'
+    | '/news/'
     | '/testimonials/'
+    | '/admin/news/$id'
+    | '/admin/news/new'
+    | '/api/auth/$'
+    | '/admin/news/'
+    | '/admin/news/$id/preview'
+    | '/admin/news/$id/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AdminRouteRoute: typeof AdminRouteRouteWithChildren
+  NewsRouteRoute: typeof NewsRouteRouteWithChildren
   TestimonialsRouteRoute: typeof TestimonialsRouteRouteWithChildren
   AboutRoute: typeof AboutRoute
   BookRoute: typeof BookRoute
-  NewsRoute: typeof NewsRoute
   ServicesRoute: typeof ServicesRoute
+  ApiAuthSplatRoute: typeof ApiAuthSplatRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -137,13 +287,6 @@ declare module '@tanstack/react-router' {
       path: '/services'
       fullPath: '/services'
       preLoaderRoute: typeof ServicesRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/news': {
-      id: '/news'
-      path: '/news'
-      fullPath: '/news'
-      preLoaderRoute: typeof NewsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/book': {
@@ -167,6 +310,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TestimonialsRouteRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/news': {
+      id: '/news'
+      path: '/news'
+      fullPath: '/news'
+      preLoaderRoute: typeof NewsRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin': {
+      id: '/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AdminRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -181,6 +338,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TestimonialsIndexRouteImport
       parentRoute: typeof TestimonialsRouteRoute
     }
+    '/news/': {
+      id: '/news/'
+      path: '/'
+      fullPath: '/news/'
+      preLoaderRoute: typeof NewsIndexRouteImport
+      parentRoute: typeof NewsRouteRoute
+    }
+    '/admin/': {
+      id: '/admin/'
+      path: '/'
+      fullPath: '/admin/'
+      preLoaderRoute: typeof AdminIndexRouteImport
+      parentRoute: typeof AdminRouteRoute
+    }
     '/testimonials/$slug': {
       id: '/testimonials/$slug'
       path: '/$slug'
@@ -188,8 +359,140 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TestimonialsSlugRouteImport
       parentRoute: typeof TestimonialsRouteRoute
     }
+    '/news/$slug': {
+      id: '/news/$slug'
+      path: '/$slug'
+      fullPath: '/news/$slug'
+      preLoaderRoute: typeof NewsSlugRouteImport
+      parentRoute: typeof NewsRouteRoute
+    }
+    '/admin/tags': {
+      id: '/admin/tags'
+      path: '/tags'
+      fullPath: '/admin/tags'
+      preLoaderRoute: typeof AdminTagsRouteImport
+      parentRoute: typeof AdminRouteRoute
+    }
+    '/admin/login': {
+      id: '/admin/login'
+      path: '/login'
+      fullPath: '/admin/login'
+      preLoaderRoute: typeof AdminLoginRouteImport
+      parentRoute: typeof AdminRouteRoute
+    }
+    '/admin/news': {
+      id: '/admin/news'
+      path: '/news'
+      fullPath: '/admin/news'
+      preLoaderRoute: typeof AdminNewsRouteRouteImport
+      parentRoute: typeof AdminRouteRoute
+    }
+    '/admin/news/': {
+      id: '/admin/news/'
+      path: '/'
+      fullPath: '/admin/news/'
+      preLoaderRoute: typeof AdminNewsIndexRouteImport
+      parentRoute: typeof AdminNewsRouteRoute
+    }
+    '/api/auth/$': {
+      id: '/api/auth/$'
+      path: '/api/auth/$'
+      fullPath: '/api/auth/$'
+      preLoaderRoute: typeof ApiAuthSplatRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/news/new': {
+      id: '/admin/news/new'
+      path: '/new'
+      fullPath: '/admin/news/new'
+      preLoaderRoute: typeof AdminNewsNewRouteImport
+      parentRoute: typeof AdminNewsRouteRoute
+    }
+    '/admin/news/$id': {
+      id: '/admin/news/$id'
+      path: '/$id'
+      fullPath: '/admin/news/$id'
+      preLoaderRoute: typeof AdminNewsIdRouteImport
+      parentRoute: typeof AdminNewsRouteRoute
+    }
+    '/admin/news/$id/': {
+      id: '/admin/news/$id/'
+      path: '/'
+      fullPath: '/admin/news/$id/'
+      preLoaderRoute: typeof AdminNewsIdIndexRouteImport
+      parentRoute: typeof AdminNewsIdRoute
+    }
+    '/admin/news/$id/preview': {
+      id: '/admin/news/$id/preview'
+      path: '/preview'
+      fullPath: '/admin/news/$id/preview'
+      preLoaderRoute: typeof AdminNewsIdPreviewRouteImport
+      parentRoute: typeof AdminNewsIdRoute
+    }
   }
 }
+
+interface AdminNewsIdRouteChildren {
+  AdminNewsIdPreviewRoute: typeof AdminNewsIdPreviewRoute
+  AdminNewsIdIndexRoute: typeof AdminNewsIdIndexRoute
+}
+
+const AdminNewsIdRouteChildren: AdminNewsIdRouteChildren = {
+  AdminNewsIdPreviewRoute: AdminNewsIdPreviewRoute,
+  AdminNewsIdIndexRoute: AdminNewsIdIndexRoute,
+}
+
+const AdminNewsIdRouteWithChildren = AdminNewsIdRoute._addFileChildren(
+  AdminNewsIdRouteChildren,
+)
+
+interface AdminNewsRouteRouteChildren {
+  AdminNewsIdRoute: typeof AdminNewsIdRouteWithChildren
+  AdminNewsNewRoute: typeof AdminNewsNewRoute
+  AdminNewsIndexRoute: typeof AdminNewsIndexRoute
+}
+
+const AdminNewsRouteRouteChildren: AdminNewsRouteRouteChildren = {
+  AdminNewsIdRoute: AdminNewsIdRouteWithChildren,
+  AdminNewsNewRoute: AdminNewsNewRoute,
+  AdminNewsIndexRoute: AdminNewsIndexRoute,
+}
+
+const AdminNewsRouteRouteWithChildren = AdminNewsRouteRoute._addFileChildren(
+  AdminNewsRouteRouteChildren,
+)
+
+interface AdminRouteRouteChildren {
+  AdminNewsRouteRoute: typeof AdminNewsRouteRouteWithChildren
+  AdminLoginRoute: typeof AdminLoginRoute
+  AdminTagsRoute: typeof AdminTagsRoute
+  AdminIndexRoute: typeof AdminIndexRoute
+}
+
+const AdminRouteRouteChildren: AdminRouteRouteChildren = {
+  AdminNewsRouteRoute: AdminNewsRouteRouteWithChildren,
+  AdminLoginRoute: AdminLoginRoute,
+  AdminTagsRoute: AdminTagsRoute,
+  AdminIndexRoute: AdminIndexRoute,
+}
+
+const AdminRouteRouteWithChildren = AdminRouteRoute._addFileChildren(
+  AdminRouteRouteChildren,
+)
+
+interface NewsRouteRouteChildren {
+  NewsSlugRoute: typeof NewsSlugRoute
+  NewsIndexRoute: typeof NewsIndexRoute
+}
+
+const NewsRouteRouteChildren: NewsRouteRouteChildren = {
+  NewsSlugRoute: NewsSlugRoute,
+  NewsIndexRoute: NewsIndexRoute,
+}
+
+const NewsRouteRouteWithChildren = NewsRouteRoute._addFileChildren(
+  NewsRouteRouteChildren,
+)
 
 interface TestimonialsRouteRouteChildren {
   TestimonialsSlugRoute: typeof TestimonialsSlugRoute
@@ -206,11 +509,13 @@ const TestimonialsRouteRouteWithChildren =
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AdminRouteRoute: AdminRouteRouteWithChildren,
+  NewsRouteRoute: NewsRouteRouteWithChildren,
   TestimonialsRouteRoute: TestimonialsRouteRouteWithChildren,
   AboutRoute: AboutRoute,
   BookRoute: BookRoute,
-  NewsRoute: NewsRoute,
   ServicesRoute: ServicesRoute,
+  ApiAuthSplatRoute: ApiAuthSplatRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
